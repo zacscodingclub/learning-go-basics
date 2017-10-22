@@ -2,6 +2,8 @@ package loops
 
 import "fmt"
 
-func For() {
-	fmt.Println("hello world")
+func For(n int) {
+	for i := 0; i <= n; i++ {
+		fmt.Println(i)
+	}
 }
