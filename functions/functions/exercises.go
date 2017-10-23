@@ -37,7 +37,10 @@ func BoolReturn() bool {
 	return (true && false) || (false && true) || !(false && false)
 }
 
-// https://projecteuler.net/problem=56
+/*
+https://projecteuler.net/problem=56
+Considering natural numbers of the form, ab, where a, b < 100, what is the maximum digital sum?
+*/
 
 func SumDigits(val string) int64 {
 	vals := []rune(val)
@@ -45,7 +48,6 @@ func SumDigits(val string) int64 {
 
 	for _, v := range vals {
 		intValue := v - '0'
-
 		sum += int64(intValue)
 	}
 
@@ -58,7 +60,6 @@ func MaxDigitalSum() (int64, int64) {
 
 	for i = 99; i > 0; i-- {
 		for j = 99; j > 0; j-- {
-
 			exp := new(big.Int).Exp(big.NewInt(i), big.NewInt(j), nil)
 
 			sum := SumDigits(exp.String())
