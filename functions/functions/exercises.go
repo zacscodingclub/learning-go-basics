@@ -2,8 +2,8 @@ package functions
 
 import (
 	"fmt"
-	"math"
-	"strconv"
+	"math/big"
+	"time"
 )
 
 func Half(n int) (float64, bool) {
@@ -39,36 +39,40 @@ func BoolReturn() bool {
 
 // https://projecteuler.net/problem=56
 
-func sumDigits(val string) float64 {
+func SumDigits(val string) int64 {
 	vals := []rune(val)
-	var sum float64
+	var sum int64
 
 	for _, v := range vals {
 		intValue := v - '0'
 		if intValue == -2 {
 			break
 		}
-		sum += float64(intValue)
+		sum += int64(intValue)
 	}
 
 	return sum
 }
 
-func MaxDigitalSum() (float64, float64) {
-	var largestSum, first, second, i, j float64
+func MaxDigitalSum() (int64, int64) {
+	start := time.Now()
+	var largestSum, first, second, i, j int64
 
 	for i = 99; i > 0; i-- {
 		for j = 99; j > 0; j-- {
-			exp := strconv.FormatFloat(math.Pow(i, j), 'f', 6, 64)
 
-			sum := sumDigits(exp)
+			exp := new(big.Int).Exp(big.NewInt(i), big.NewInt(j), nil)
+
+			sum := SumDigits(exp.String())
 			if sum > largestSum {
 				largestSum, first, second = sum, i, j
 			}
 		}
 	}
 
+	t := time.Now()
 	fmt.Println("Largest:", largestSum)
 	fmt.Println("Values:", first, "&", second)
+	fmt.Println("Time:", t.Sub(start))
 	return first, second
 }
