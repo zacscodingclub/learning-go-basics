@@ -45,9 +45,7 @@ func SumDigits(val string) int64 {
 
 	for _, v := range vals {
 		intValue := v - '0'
-		if intValue == -2 {
-			break
-		}
+
 		sum += int64(intValue)
 	}
 
