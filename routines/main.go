@@ -1,5 +1,12 @@
 package main
 
+/*
+Channels Resources
+https://golang.org/doc/effective_go.html#concurrency
+
+
+
+*/
 import (
 	"fmt"
 	"math/rand"
@@ -7,6 +14,8 @@ import (
 	"sync"
 	"sync/atomic"
 	"time"
+
+	"github.com/zacscodingclub/learning-go-basics/routines/fanin"
 )
 
 var wg sync.WaitGroup
@@ -18,11 +27,7 @@ func init() {
 }
 
 func main() {
-	wg.Add(2)
-	go incrementer("foo")
-	go incrementer("bar")
-	wg.Wait()
-	fmt.Println("Final Counter:", counter)
+	fanin.MainTwo()
 }
 
 func incrementer(s string) {
