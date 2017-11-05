@@ -104,7 +104,7 @@ func fanOut(in chan int) chan int {
 
 func merge(chans ...chan int) chan int {
 	fmt.Printf("TYPE OF CHANS: %T\n", chans)
-	out := make(chan int)
+	out := make(chan int)C
 	var wg sync.WaitGroup
 	wg.Add(len(chans))
 
@@ -124,3 +124,5 @@ func merge(chans ...chan int) chan int {
 
 	return out
 }
+
+
