@@ -37,9 +37,9 @@ func main() {
 	var b = &a // pointer integer type
 
 	fmt.Println(b)
-	fmt.Println(*b) // deregisters value in memory address
+	fmt.Println("deregisterd", *b) // deregisters value in memory address
 
-	*b = 42
+	// *b = 42
 	// a is now equal to 42 since we changed the value in that memory bucket
 	fmt.Println(a)
 
